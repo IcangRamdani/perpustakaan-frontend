@@ -149,7 +149,7 @@ async function loadNotifikasi() {
       const unpaidFines = allFines.filter(d => d.status === 'Belum dibayar');
       
       if (unpaidFines.length > 0) {
-        const totalFine = unpaidFines.reduce((sum, d) => sum + (d.nominal || 0), 0);
+        const totalFine = unpaidFines.reduce((sum, d) => sum + (parseInt(d.nominal) || 0), 0);
         notifikasi.push({
           id: 'notif-fine',
           type: 'danger',

@@ -415,13 +415,49 @@
       margin: 10px 0;
     }
 
+    .hamburger-menu {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+      margin-right: 10px;
+    }
+
     @media (max-width: 768px) {
+      .hamburger-menu {
+        display: block;
+      }
+
+      .admin-wrapper {
+        flex-direction: column;
+      }
+
       .admin-sidebar {
-        width: 200px;
+        width: 100%;
+        height: auto;
+        position: static;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0;
+      }
+
+      .admin-sidebar.show {
+        max-height: 500px;
+        padding: 20px 0;
+      }
+
+      .admin-sidebar h3 {
+        padding: 0 20px;
+        margin: 15px 0 20px 0;
       }
 
       .admin-main {
-        margin-left: 200px;
+        margin-left: 0;
+        flex: 1;
       }
 
       .admin-content {
@@ -433,12 +469,121 @@
       }
 
       .dashboard-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
       }
 
       .admin-header {
         flex-direction: column;
         gap: 10px;
+        align-items: flex-start;
+      }
+
+      .admin-header h2 {
+        font-size: 18px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn-group .btn {
+        width: 100%;
+      }
+
+      .section-card {
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+
+      .section-card h2 {
+        font-size: 16px;
+      }
+
+      .stat-card {
+        padding: 15px;
+      }
+
+      .stat-value {
+        font-size: 22px;
+      }
+
+      table {
+        font-size: 11px;
+      }
+
+      table th, table td {
+        padding: 10px 5px;
+      }
+
+      .modal-content {
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .admin-sidebar h3 {
+        font-size: 14px;
+      }
+
+      .sidebar-menu a {
+        padding: 10px 15px;
+        font-size: 12px;
+      }
+
+      .admin-header {
+        padding: 12px;
+      }
+
+      .admin-header h2 {
+        font-size: 16px;
+      }
+
+      .admin-content {
+        padding: 10px;
+      }
+
+      .section-card {
+        padding: 12px;
+      }
+
+      .stat-card {
+        padding: 12px;
+      }
+
+      .stat-value {
+        font-size: 18px;
+      }
+
+      .stat-card h3 {
+        font-size: 10px;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        font-size: 12px;
+        padding: 8px;
+      }
+
+      .form-group label {
+        font-size: 12px;
+      }
+
+      .btn {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      table {
+        font-size: 10px;
+      }
+
+      table th {
+        padding: 8px 4px;
+      }
+
+      table td {
+        padding: 8px 4px;
       }
     }
   </style>
@@ -465,7 +610,10 @@
   <!-- MAIN CONTENT -->
   <div class="admin-main">
     <header class="admin-header">
-      <h2 id="pageTitle">📊 Dashboard</h2>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button class="hamburger-menu" onclick="toggleSidebar()">☰</button>
+        <h2 id="pageTitle" style="margin: 0;">📊 Dashboard</h2>
+      </div>
       <div class="user-info">
         <span id="adminName">Loading...</span>
         <a href="#" onclick="adminLogout(); return false;">Logout</a>
@@ -663,6 +811,24 @@
 
 <script>
 const API_URL = 'https://perpustakaan-deploy-production.up.railway.app/api';
+
+// ===== SIDEBAR TOGGLE =====
+function toggleSidebar() {
+  const sidebar = document.querySelector('.admin-sidebar');
+  sidebar.classList.toggle('show');
+}
+
+// Close sidebar when clicking a menu item
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.sidebar-menu a').forEach(link => {
+    link.addEventListener('click', function() {
+      const sidebar = document.querySelector('.admin-sidebar');
+      if (window.innerWidth <= 768) {
+        sidebar.classList.remove('show');
+      }
+    });
+  });
+});
 
 // ===== PAGE SWITCHING =====
 function switchSection(section) {

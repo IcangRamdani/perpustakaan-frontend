@@ -227,7 +227,7 @@
   <!-- Denda Info -->
   <div class="info-box">
     <h3 style="margin-top: 0;">📋 Ketentuan Denda</h3>
-    <p style="margin: 10px 0;">Denda keterlambatan pengembalian buku adalah <strong>Rp500 / hari</strong>.</p>
+    <p style="margin: 10px 0;">Denda keterlambatan pengembalian buku adalah <strong>Rp 500 rupiah per hari</strong>.</p>
   </div>
 
   <!-- Denda Summary -->
@@ -250,13 +250,13 @@
     <div style="overflow-x: auto;">
       <table style="width: 100%; border-collapse: collapse;">
         <thead>
-          <tr style="background: #f8f9fa; border-bottom: 2px solid #ddd;">
-            <th style="padding: 12px; text-align: left; color: #0b3c5d; font-weight: 600;">No</th>
-            <th style="padding: 12px; text-align: left; color: #0b3c5d; font-weight: 600;">Peminjaman ID</th>
-            <th style="padding: 12px; text-align: left; color: #0b3c5d; font-weight: 600;">Nominal Denda</th>
-            <th style="padding: 12px; text-align: left; color: #0b3c5d; font-weight: 600;">Status</th>
-            <th style="padding: 12px; text-align: left; color: #0b3c5d; font-weight: 600;">Metode</th>
-            <th style="padding: 12px; text-align: left; color: #0b3c5d; font-weight: 600;">Aksi</th>
+          <tr style="background: #667eea; border-bottom: 2px solid #556dcb;">
+            <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">No</th>
+            <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Peminjaman ID</th>
+            <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Nominal Denda</th>
+            <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Status</th>
+            <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Metode</th>
+            <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Aksi</th>
           </tr>
         </thead>
         <tbody id="dendaBody">
@@ -385,7 +385,7 @@ async function loadDendaUser() {
 
     const totalDenda = userDenda
       .filter(d => d.status === 'Belum dibayar')
-      .reduce((sum, d) => sum + (d.nominal || 0), 0);
+      .reduce((sum, d) => sum + (parseInt(d.nominal) || 0), 0);
     const countTelat = userDenda.filter(d => d.status === 'Belum dibayar').length;
 
     document.getElementById('totalDenda').textContent = 'Rp ' + totalDenda.toLocaleString('id-ID');
@@ -394,11 +394,12 @@ async function loadDendaUser() {
     userDenda.forEach((denda, idx) => {
       const statusColor = denda.status === 'Dibayar' ? '#d4edda' : '#f8d7da';
       const methodDisplay = denda.metode_bayar ? denda.metode_bayar : '-';
+      const nominalDenda = parseInt(denda.nominal) || 0;
       const row = tbody.insertRow();
       row.innerHTML = `
         <td style="padding: 12px; border-bottom: 1px solid #eee;">${idx + 1}</td>
         <td style="padding: 12px; border-bottom: 1px solid #eee;">ID: ${denda.peminjaman_id}</td>
-        <td style="padding: 12px; border-bottom: 1px solid #eee;">Rp ${denda.nominal.toLocaleString('id-ID')}</td>
+        <td style="padding: 12px; border-bottom: 1px solid #eee;">Rp ${nominalDenda.toLocaleString('id-ID')}</td>
         <td style="padding: 12px; border-bottom: 1px solid #eee;">
           <span style="background: ${statusColor}; padding: 4px 8px; border-radius: 3px; font-size: 12px; color: ${denda.status === 'Dibayar' ? '#155724' : '#721c24'};">
             ${denda.status}
@@ -419,16 +420,17 @@ async function loadDendaUser() {
 }
 
 function openPaymentModal(dendaId, nominal) {
+  const nominalAsNumber = parseInt(nominal) || 0;
   currentPaymentData = {
     dendaId: dendaId,
-    nominal: nominal,
+    nominal: nominalAsNumber,
     method: null
   };
   
   document.getElementById('paymentModal').style.display = 'block';
   document.getElementById('paymentContent').style.display = 'block';
   document.getElementById('successMsg').style.display = 'none';
-  document.getElementById('modalAmount').textContent = 'Rp ' + nominal.toLocaleString('id-ID');
+  document.getElementById('modalAmount').textContent = 'Rp ' + nominalAsNumber.toLocaleString('id-ID');
   document.getElementById('namaLangsung').value = localStorage.getItem('nama') || '';
   document.getElementById('namaPengirim').value = localStorage.getItem('nama') || '';
   document.getElementById('tanggalTransfer').valueAsDate = new Date();

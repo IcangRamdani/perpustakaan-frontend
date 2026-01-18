@@ -223,20 +223,9 @@
       <span class="brand-title">Perpustakaan Digital</span>
     </div>
 
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-    <div class="menu" id="menu">
-      <a href="dashboard.html">📊 Dashboard</a>
-      <a href="katalog.html">📚 Katalog</a>
-      <a href="pinjam.html">📤 Peminjaman</a>
-      <a href="riwayat.html">📋 Riwayat</a>
-      <a href="denda.html">⚠️ Denda</a>
-      <a href="anggota.html">👥 Anggota</a>
-      <a href="notifikasi.html">🔔 Notifikasi</a>
-      <a href="laporan.html">📈 Laporan</a>
-      <a href="tentang.html">ℹ️ Tentang</a>
-      <a href="kelompok.html" class="active">👨‍💼 Kelompok</a>
-      <a href="#" onclick="logout()" style="color: #ffcccc;">🚪 Logout</a>
+    <div style="margin-left: auto; display: flex; gap: 12px; align-items: center;">
+      <a href="index.html" style="color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 6px; font-weight: 500; transition: all 0.3s; font-size: 14px;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'" title="Kembali ke Halaman Login">🏠 Kembali</a>
+      <a href="#" onclick="logout()" style="color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,105,180,0.5); border-radius: 6px; font-weight: 500; transition: all 0.3s; font-size: 14px;" onmouseover="this.style.background='rgba(255,105,180,0.7)'" onmouseout="this.style.background='rgba(255,105,180,0.5)'" title="Logout">🚪 Logout</a>
     </div>
   </div>
 </div>
@@ -298,12 +287,19 @@
   <h2 style="color: #0b3c5d; margin-bottom: 24px; text-align: center; font-size: 24px;">👥 Anggota Kelompok</h2>
 
   <div class="anggota-grid">
+     <div class="anggota-card">
+      <div class="anggota-avatar">👨</div>
+      <div class="anggota-nama">Ilham Ramadhan</div>
+      <div class="anggota-nim">2441065</div>
+      <div class="anggota-role">🎯 Project Manager</div>
+    </div>
+    
     <!-- Anggota 1 -->
     <div class="anggota-card">
       <div class="anggota-avatar">👨</div>
       <div class="anggota-nama">Icang Ramdani</div>
       <div class="anggota-nim">2441020</div>
-      <div class="anggota-role">🔧 Ketua Kelompok & Backend Developer</div>
+      <div class="anggota-role">� Backend Developer, Frontend Developer, Database, dan UI/UX</div>
     </div>
 
     <!-- Anggota 2 -->
@@ -311,7 +307,7 @@
       <div class="anggota-avatar">👨</div>
       <div class="anggota-nama">Ferdy Rosadi</div>
       <div class="anggota-nim">2441016</div>
-      <div class="anggota-role">💻 Frontend Developer</div>
+      <div class="anggota-role">🧪 Tester dan Dokumentasi</div>
     </div>
 
     <!-- Anggota 3 -->
@@ -319,22 +315,17 @@
       <div class="anggota-avatar">👨</div>
       <div class="anggota-nama">Fitrah Adriansyah</div>
       <div class="anggota-nim">2441018</div>
-      <div class="anggota-role">🗄️ Database Administrator</div>
+      <div class="anggota-role">� System Analyst</div>
     </div>
 
     <!-- Anggota 4 -->
-    <div class="anggota-card">
-      <div class="anggota-avatar">👨</div>
-      <div class="anggota-nama">Ilham Ramadhan</div>
-      <div class="anggota-nim">2441065</div>
-      <div class="anggota-role">🧪 QA & Testing</div>
-    </div>
 
     <!-- Anggota 5 -->
-    <div class="anggota-card">\n      <div class="anggota-avatar">👨</div>
+    <div class="anggota-card">
+      <div class="anggota-avatar">👨</div>
       <div class="anggota-nama">Ristanto Hermawan Saputra</div>
       <div class="anggota-nim">2441040</div>
-      <div class="anggota-role">📚 Dokumentasi & Support</div>
+      <div class="anggota-role">📊 System Analyst</div>
     </div>
   </div>
 
