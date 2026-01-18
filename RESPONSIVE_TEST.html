@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Design Test - Perpustakaan Digital</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      padding: 20px;
+    }
+
+    .test-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #0b3c5d;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #328cc1;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      color: #328cc1;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .test-section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border-left: 4px solid #328cc1;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 10px;
+      margin: 5px 0;
+      background: white;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checklist li:before {
+      content: "☑️";
+      font-size: 18px;
+    }
+
+    .device-viewport {
+      display: inline-block;
+      background: #e8e8e8;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+      margin: 0 5px;
+    }
+
+    .status-ok {
+      color: #27ae60;
+      font-weight: bold;
+    }
+
+    .status-warning {
+      color: #f39c12;
+      font-weight: bold;
+    }
+
+    .table-test {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      background: white;
+    }
+
+    .table-test th,
+    .table-test td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    .table-test th {
+      background: #0b3c5d;
+      color: white;
+      font-weight: 600;
+    }
+
+    .table-test tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    .code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 10px 16px;
+      background: #328cc1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: #0b3c5d;
+      transform: translateY(-2px);
+    }
+
+    .responsive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 15px 0;
+    }
+
+    .grid-item {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .grid-item h3 {
+      color: #0b3c5d;
+      margin-bottom: 10px;
+    }
+
+    .current-viewport {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0b3c5d;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-size: 12px;
+      font-family: monospace;
+      z-index: 999;
+    }
+
+    @media (max-width: 767px) {
+      .test-container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      .responsive-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .table-test {
+        font-size: 12px;
+      }
+
+      .table-test th,
+      .table-test td {
+        padding: 8px;
+      }
+    }
+
+    @media (max-width: 575px) {
+      body {
+        padding: 10px;
+      }
+
+      .test-container {
+        padding: 12px;
+        border-radius: 8px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+
+      .test-section {
+        padding: 12px;
+        margin-bottom: 15px;
+      }
+
+      .checklist li {
+        padding: 8px;
+        font-size: 13px;
+      }
+
+      .table-test {
+        font-size: 11px;
+      }
+
+      .table-test th,
+      .table-test td {
+        padding: 6px;
+      }
+
+      .current-viewport {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px 12px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="test-container">
+  <h1>📱 Responsive Design Test Suite</h1>
+  <p>Halaman ini untuk menguji responsiveness dari Perpustakaan Digital pada berbagai ukuran layar.</p>
+
+  <div class="test-section">
+    <h2>✅ Responsive Features yang Sudah Diimplementasikan</h2>
+    <ul class="checklist">
+      <li><strong>Viewport Meta Tag</strong> - Semua halaman memiliki viewport configuration</li>
+      <li><strong>Mobile-First Approach</strong> - CSS dirancang untuk mobile terlebih dahulu</li>
+      <li><strong>Flexible Grid System</strong> - Cards dan konten menggunakan CSS Grid/Flexbox</li>
+      <li><strong>Responsive Navigation</strong> - Hamburger menu di mobile, horizontal di desktop</li>
+      <li><strong>Touch-Friendly Buttons</strong> - Minimum 44px untuk tap targets</li>
+      <li><strong>Responsive Typography</strong> - Font size scaling berdasarkan device</li>
+      <li><strong>Adaptive Images</strong> - Images scale dengan kontainer</li>
+      <li><strong>Responsive Tables</strong> - Tables dengan horizontal scroll di mobile</li>
+      <li><strong>Flexible Forms</strong> - Form fields full-width di mobile</li>
+      <li><strong>Responsive Hero Section</strong> - 2 kolom di desktop, 1 kolom di mobile</li>
+      <li><strong>Collapsible Sidebar</strong> - Admin sidebar jadi collapsible di tablet</li>
+      <li><strong>Responsive Modals</strong> - Modal sizing berdasarkan viewport</li>
+    </ul>
+  </div>
+
+  <div class="test-section">
+    <h2>📊 Breakpoints & Viewport Testing</h2>
+    <table class="table-test">
+      <thead>
+        <tr>
+          <th>Device Category</th>
+          <th>Viewport Width</th>
+          <th>Layout Changes</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Small Phone</strong></td>
+          <td><span class="device-viewport">320-374px</span></td>
+          <td>Fixed navbar, 1 col cards, minimal spacing</td>
+          <td><span class="status-ok">✅</span></td>
+        </tr>
+        <tr>
+          <td><strong>Standard Phone</strong></td>
+          <td><span class="device-viewport">375-480px</span></td>
+          <td>Full width buttons, stacked menu, small fonts</td>
+          <td><span class="status-ok">✅</span></td>
+        </tr>
+        <tr>
+          <td><strong>Large Phone</strong></td>
+          <td><span class="device-viewport">481-575px</span></td>
+          <td>Slightly larger fonts, 2 col grid</td>
+          <td><span class="status-ok">✅</span></td>
+        </tr>
+        <tr>
+          <td><strong>Small Tablet</strong></td>
+          <td><span class="device-viewport">576-767px</span></td>
+          <td>Hamburger menu, flexible grid, optimized spacing</td>
+          <td><span class="status-ok">✅</span></td>
+        </tr>
+        <tr>
+          <td><strong>Large Tablet</strong></td>
+          <td><span class="device-viewport">768-991px</span></td>
+          <td>2 column layouts, larger cards, normal font</td>
+          <td><span class="status-ok">✅</span></td>
+        </tr>
+        <tr>
+          <td><strong>Small Desktop</strong></td>
+          <td><span class="device-viewport">992-1199px</span></td>
+          <td>3 column grid, horizontal menu, full layout</td>
+          <td><span class="status-ok">✅</span></td>
+        </tr>
+        <tr>
+          <td><strong>Large Desktop</strong></td>
+          <td><span class="device-viewport">1200+px</span></td>
+          <td>4 column grid, max-width container, full experience</td>
+          <td><span class="status-ok">✅</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="test-section">
+    <h2>🧪 Testing Checklist</h2>
+    
+    <h3>Desktop Testing (1920px, 1440px, 1024px)</h3>
+    <ul class="checklist">
+      <li>Navbar menampilkan menu horizontal</li>
+      <li>Cards menampilkan 4 kolom</li>
+      <li>Hero section 2 kolom (text + form)</li>
+      <li>Hamburger menu tersembunyi</li>
+      <li>Search box inline dengan button</li>
+    </ul>
+
+    <h3>Tablet Testing (768px - 991px)</h3>
+    <ul class="checklist">
+      <li>Hamburger menu aktif dan berfungsi</li>
+      <li>Menu dropdown/overlay muncul saat diklik</li>
+      <li>Cards menjadi 1 kolom</li>
+      <li>Hero section menjadi 1 kolom</li>
+      <li>Search box tetap responsive</li>
+      <li>Tables horizontal scroll jika perlu</li>
+    </ul>
+
+    <h3>Mobile Testing (320px - 767px)</h3>
+    <ul class="checklist">
+      <li>Navbar fixed di atas layar</li>
+      <li>Brand title disembunyikan (hanya logo)</li>
+      <li>Hamburger menu berfungsi dengan sempurna</li>
+      <li>Menu overlay fullscreen</li>
+      <li>Cards stacked vertikal (1 kolom)</li>
+      <li>Font sizes readable tanpa zoom</li>
+      <li>Buttons minimum 44px untuk tap</li>
+      <li>Input fields minimum 44px untuk mudah diketik</li>
+      <li>Modals centered dan responsive</li>
+      <li>Tables dapat di-scroll horizontal</li>
+      <li>Images tidak melebihi container width</li>
+      <li>No horizontal overflow</li>
+    </ul>
+  </div>
+
+  <div class="test-section">
+    <h2>🎯 Features yang Ditest</h2>
+    
+    <h3>1. Navigation</h3>
+    <ul class="checklist">
+      <li>Navbar logo dan title responsif</li>
+      <li>Menu hamburger muncul di tablet/mobile</li>
+      <li>Menu toggle berfungsi dengan smooth</li>
+      <li>Active state menunjukkan halaman saat ini</li>
+      <li>Logout link memiliki styling khusus</li>
+    </ul>
+
+    <h3>2. Hero Section</h3>
+    <ul class="checklist">
+      <li>Text content readable di semua ukuran</li>
+      <li>Login card responsive dan centered</li>
+      <li>Hero stats flexible dan tidak overflow</li>
+      <li>Background gradient tetap indah</li>
+    </ul>
+
+    <h3>3. Cards & Grid</h3>
+    <ul class="checklist">
+      <li>Cards scaling dengan container</li>
+      <li>Grid responsive menggunakan auto-fill/auto-fit</li>
+      <li>Gap/spacing konsisten</li>
+      <li>Cards tidak terlalu besar di desktop</li>
+      <li>Cards tidak terlalu kecil di mobile</li>
+    </ul>
+
+    <h3>4. Forms & Inputs</h3>
+    <ul class="checklist">
+      <li>Input fields full-width di mobile</li>
+      <li>Focus states visible</li>
+      <li>Validation messages readable</li>
+      <li>Buttons full-width di mobile</li>
+      <li>Form labels clear dan properly spaced</li>
+    </ul>
+
+    <h3>5. Tables</h3>
+    <ul class="checklist">
+      <li>Tables horizontal scroll di mobile</li>
+      <li>Font sizes reduced tapi readable</li>
+      <li>Header sticky jika perlu</li>
+      <li>Rows hover effects works</li>
+      <li>Table wrapper padding konsisten</li>
+    </ul>
+
+    <h3>6. Modals</h3>
+    <ul class="checklist">
+      <li>Modal width responsive</li>
+      <li>Modal vertically centered</li>
+      <li>Close button easily tappable</li>
+      <li>Overlay background semi-transparent</li>
+      <li>Modal tidak overflow viewport</li>
+    </ul>
+  </div>
+
+  <div class="test-section">
+    <h2>🔧 Test dengan DevTools</h2>
+    <ol style="padding-left: 20px;">
+      <li>Buka aplikasi di browser Chrome/Firefox</li>
+      <li>Tekan <code class="code">F12</code> untuk membuka DevTools</li>
+      <li>Klik toggle device toolbar <code class="code">Ctrl+Shift+M</code> (Windows) atau <code class="code">Cmd+Shift+M</code> (Mac)</li>
+      <li>Pilih device dari dropdown (iPhone, iPad, Galaxy, dll)</li>
+      <li>Atau drag untuk custom width</li>
+      <li>Tekan landscape button untuk test landscape mode</li>
+    </ol>
+  </div>
+
+  <div class="test-section">
+    <h2>📱 Device Recommendations untuk Testing</h2>
+    <div class="responsive-grid">
+      <div class="grid-item">
+        <h3>Small Phone</h3>
+        <p><strong>iPhone SE</strong></p>
+        <p>375 × 667</p>
+      </div>
+      <div class="grid-item">
+        <h3>Standard Phone</h3>
+        <p><strong>iPhone 12/13</strong></p>
+        <p>390 × 844</p>
+      </div>
+      <div class="grid-item">
+        <h3>Large Phone</h3>
+        <p><strong>Pixel 5</strong></p>
+        <p>412 × 915</p>
+      </div>
+      <div class="grid-item">
+        <h3>Small Tablet</h3>
+        <p><strong>iPad mini</strong></p>
+        <p>768 × 1024</p>
+      </div>
+      <div class="grid-item">
+        <h3>Large Tablet</h3>
+        <p><strong>iPad Air</strong></p>
+        <p>1024 × 1366</p>
+      </div>
+      <div class="grid-item">
+        <h3>Desktop</h3>
+        <p><strong>Full HD</strong></p>
+        <p>1920 × 1080</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>🎨 Responsive Grid Demonstration</h2>
+    <p>Grid di bawah akan berubah kolom berdasarkan ukuran layar:</p>
+    <div class="responsive-grid">
+      <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; text-align: center;">
+        <p style="font-size: 14px; color: #0b3c5d;"><strong>Desktop:</strong> 4 kolom</p>
+        <p style="font-size: 12px; color: #666;">1200px+</p>
+      </div>
+      <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; text-align: center;">
+        <p style="font-size: 14px; color: #0b3c5d;"><strong>Tablet:</strong> 2-3 kolom</p>
+        <p style="font-size: 12px; color: #666;">768px - 1199px</p>
+      </div>
+      <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; text-align: center;">
+        <p style="font-size: 14px; color: #0b3c5d;"><strong>Mobile:</strong> 1 kolom</p>
+        <p style="font-size: 12px; color: #666;">< 768px</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>✨ Additional Responsive Features</h2>
+    <ul class="checklist">
+      <li>CSS Media Queries untuk breakpoints: 320px, 576px, 768px, 992px, 1200px, 1400px</li>
+      <li>Flexible Typography dengan font size scaling</li>
+      <li>Responsive Images dengan max-width 100%</li>
+      <li>Touch-friendly tap targets (minimum 44×44px)</li>
+      <li>Optimized performance di mobile</li>
+      <li>Print-friendly styles untuk reports</li>
+      <li>Landscape orientation support</li>
+      <li>High DPI/Retina display support</li>
+    </ul>
+  </div>
+
+  <div class="test-section">
+    <h2>📝 Notes</h2>
+    <ul style="padding-left: 20px;">
+      <li><strong>Backend Tidak Berubah:</strong> Semua API endpoints tetap sama</li>
+      <li><strong>Konfigurasi Server Tidak Berubah:</strong> Deployment configuration tidak terpengaruh</li>
+      <li><strong>Functionality Tetap:</strong> Semua fitur berfungsi sama di semua device</li>
+      <li><strong>Performance:</strong> CSS dioptimalkan untuk loading cepat</li>
+      <li><strong>Browser Support:</strong> Chrome, Firefox, Safari, Edge (semua versi terbaru)</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="current-viewport">
+  <div>📏 Current Viewport:</div>
+  <div id="viewportWidth" style="font-weight: bold; margin-top: 5px;">Loading...</div>
+</div>
+
+<script>
+  function updateViewport() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const viewport = document.getElementById('viewportWidth');
+    
+    let deviceType = '';
+    if (width <= 375) deviceType = 'Small Phone';
+    else if (width <= 480) deviceType = 'Standard Phone';
+    else if (width <= 575) deviceType = 'Large Phone';
+    else if (width <= 767) deviceType = 'Small Tablet';
+    else if (width <= 991) deviceType = 'Tablet';
+    else if (width <= 1199) deviceType = 'Small Desktop';
+    else if (width <= 1399) deviceType = 'Desktop';
+    else deviceType = 'Large Desktop';
+    
+    viewport.textContent = `${width}×${height}px (${deviceType})`;
+  }
+  
+  updateViewport();
+  window.addEventListener('resize', updateViewport);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokumentasi Kelompok RPL 5 - Perpustakaan Digital</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <style>
+    .kelompok-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+
+    .kelompok-header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .kelompok-header p {
+      font-size: 16px;
+      opacity: 0.95;
+      margin: 0;
+    }
+
+    .kelompok-info {
+      background: rgba(102, 126, 234, 0.1);
+      border-left: 4px solid #667eea;
+      padding: 16px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+    }
+
+    .kelompok-info p {
+      margin: 8px 0;
+      color: #0b3c5d;
+      font-weight: 500;
+    }
+
+    .anggota-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .anggota-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+      border-top: 4px solid #667eea;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .anggota-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .anggota-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 36px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    .anggota-nama {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0b3c5d;
+      margin-bottom: 8px;
+    }
+
+    .anggota-nim {
+      font-size: 14px;
+      color: #667eea;
+      font-family: monospace;
+      background: #f0f0f0;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .anggota-role {
+      font-size: 12px;
+      color: #666;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #eee;
+      width: 100%;
+    }
+
+    .project-info {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .project-info h2 {
+      color: #0b3c5d;
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+
+    .project-info-item {
+      display: flex;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .project-info-label {
+      font-weight: 600;
+      color: #0b3c5d;
+      min-width: 120px;
+    }
+
+    .project-info-value {
+      color: #666;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .stat-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #667eea;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    @media (max-width: 767px) {
+      .kelompok-header {
+        padding: 30px 16px;
+      }
+
+      .kelompok-header h1 {
+        font-size: 24px;
+      }
+
+      .kelompok-header p {
+        font-size: 14px;
+      }
+
+      .anggota-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .anggota-card {
+        padding: 18px;
+      }
+
+      .anggota-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 32px;
+      }
+
+      .anggota-nama {
+        font-size: 16px;
+      }
+
+      .project-info {
+        padding: 16px;
+      }
+
+      .project-info h2 {
+        font-size: 18px;
+      }
+
+      .project-info-item {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="nav-wrap">
+    <div class="brand">
+      <img src="assets/logo-mandala.jpg" alt="Logo">
+      <span class="brand-title">Perpustakaan Digital</span>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <div class="menu" id="menu">
+      <a href="dashboard.html">📊 Dashboard</a>
+      <a href="katalog.html">📚 Katalog</a>
+      <a href="pinjam.html">📤 Peminjaman</a>
+      <a href="riwayat.html">📋 Riwayat</a>
+      <a href="denda.html">⚠️ Denda</a>
+      <a href="anggota.html">👥 Anggota</a>
+      <a href="notifikasi.html">🔔 Notifikasi</a>
+      <a href="laporan.html">📈 Laporan</a>
+      <a href="tentang.html">ℹ️ Tentang</a>
+      <a href="kelompok.html" class="active">👨‍💼 Kelompok</a>
+      <a href="#" onclick="logout()" style="color: #ffcccc;">🚪 Logout</a>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="container">
+
+  <div class="kelompok-header">
+    <h1>👨‍💼 Kelompok RPL 5</h1>
+    <p>Dokumentasi Kelompok Proyek Perpustakaan Digital</p>
+  </div>
+
+  <!-- Project Info -->
+  <div class="project-info">
+    <h2>📋 Informasi Proyek</h2>
+    <div class="project-info-item">
+      <span class="project-info-label">Proyek:</span>
+      <span class="project-info-value">Sistem Manajemen Perpustakaan Digital</span>
+    </div>
+    <div class="project-info-item">
+      <span class="project-info-label">Kelompok:</span>
+      <span class="project-info-value">RPL 5 (Rekayasa Perangkat Lunak)</span>
+    </div>
+    <div class="project-info-item">
+      <span class="project-info-label">Jumlah Anggota:</span>
+      <span class="project-info-value">5 Orang</span>
+    </div>
+    <div class="project-info-item">
+      <span class="project-info-label">Status:</span>
+      <span class="project-info-value">✅ Sedang Berjalan</span>
+    </div>
+    <div class="project-info-item">
+      <span class="project-info-label">Teknologi:</span>
+      <span class="project-info-value">HTML5, CSS3, JavaScript, Node.js, MySQL</span>
+    </div>
+  </div>
+
+  <!-- Statistics -->
+  <div class="stats-container">
+    <div class="stat-box">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Total Anggota</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">1</div>
+      <div class="stat-label">Proyek Aktif</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">13</div>
+      <div class="stat-label">Halaman</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Responsif</div>
+    </div>
+  </div>
+
+  <!-- Daftar Anggota -->
+  <h2 style="color: #0b3c5d; margin-bottom: 24px; text-align: center; font-size: 24px;">👥 Anggota Kelompok</h2>
+
+  <div class="anggota-grid">
+    <!-- Anggota 1 -->
+    <div class="anggota-card">
+      <div class="anggota-avatar">👨</div>
+      <div class="anggota-nama">Icang Ramdani</div>
+      <div class="anggota-nim">2441020</div>
+      <div class="anggota-role">🔧 Ketua Kelompok & Backend Developer</div>
+    </div>
+
+    <!-- Anggota 2 -->
+    <div class="anggota-card">
+      <div class="anggota-avatar">👨</div>
+      <div class="anggota-nama">Ferdy Rosadi</div>
+      <div class="anggota-nim">2441016</div>
+      <div class="anggota-role">💻 Frontend Developer</div>
+    </div>
+
+    <!-- Anggota 3 -->
+    <div class="anggota-card">
+      <div class="anggota-avatar">👨</div>
+      <div class="anggota-nama">Fitrah Adriansyah</div>
+      <div class="anggota-nim">2441018</div>
+      <div class="anggota-role">🗄️ Database Administrator</div>
+    </div>
+
+    <!-- Anggota 4 -->
+    <div class="anggota-card">
+      <div class="anggota-avatar">👨</div>
+      <div class="anggota-nama">Ilham Ramadhan</div>
+      <div class="anggota-nim">2441065</div>
+      <div class="anggota-role">🧪 QA & Testing</div>
+    </div>
+
+    <!-- Anggota 5 -->
+    <div class="anggota-card">\n      <div class="anggota-avatar">👨</div>
+      <div class="anggota-nama">Ristanto Hermawan Saputra</div>
+      <div class="anggota-nim">2441040</div>
+      <div class="anggota-role">📚 Dokumentasi & Support</div>
+    </div>
+  </div>
+
+  <!-- Fitur Proyek -->
+  <div class="project-info" style="margin-top: 40px;">
+    <h2>✨ Fitur Proyek</h2>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 8px 0; color: #666;">✅ Sistem Manajemen Buku</li>
+      <li style="padding: 8px 0; color: #666;">✅ Peminjaman & Pengembalian</li>
+      <li style="padding: 8px 0; color: #666;">✅ Manajemen Member</li>
+      <li style="padding: 8px 0; color: #666;">✅ Sistem Denda Otomatis</li>
+      <li style="padding: 8px 0; color: #666;">✅ Laporan Perpustakaan</li>
+      <li style="padding: 8px 0; color: #666;">✅ Dashboard Admin</li>
+      <li style="padding: 8px 0; color: #666;">✅ Responsive Design (Mobile-Friendly)</li>
+      <li style="padding: 8px 0; color: #666;">✅ Notifikasi Real-time</li>
+    </ul>
+  </div>
+
+  <!-- Teknologi yang Digunakan -->
+  <div class="project-info">
+    <h2>🛠️ Teknologi yang Digunakan</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+      <div style="padding: 12px; background: #f5f5f5; border-radius: 6px; border-left: 3px solid #667eea;">
+        <strong style="color: #0b3c5d;">Frontend</strong>
+        <p style="margin: 8px 0 0; color: #666; font-size: 13px;">HTML5, CSS3, JavaScript (Vanilla)</p>
+      </div>
+      <div style="padding: 12px; background: #f5f5f5; border-radius: 6px; border-left: 3px solid #764ba2;">
+        <strong style="color: #0b3c5d;">Backend</strong>
+        <p style="margin: 8px 0 0; color: #666; font-size: 13px;">Node.js, Express.js, REST API</p>
+      </div>
+      <div style="padding: 12px; background: #f5f5f5; border-radius: 6px; border-left: 3px solid #667eea;">
+        <strong style="color: #0b3c5d;">Database</strong>
+        <p style="margin: 8px 0 0; color: #666; font-size: 13px;">MySQL, phpMyAdmin</p>
+      </div>
+      <div style="padding: 12px; background: #f5f5f5; border-radius: 6px; border-left: 3px solid #764ba2;">
+        <strong style="color: #0b3c5d;">Deployment</strong>
+        <p style="margin: 8px 0 0; color: #666; font-size: 13px;">Railway, GitHub Pages</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Perpustakaan Digital - Kelompok RPL 5</p>
+  <p style="font-size: 12px; opacity: 0.8;">Sistem Manajemen Perpustakaan Digital | All Rights Reserved</p>
+</footer>
+
+<!-- Toggle Menu -->
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('show');
+  }
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.menu a').forEach(link => {
+    link.addEventListener('click', function() {
+      document.getElementById('menu').classList.remove('show');
+    });
+  });
+
+  // Logout function
+  function logout() {
+    if (confirm('Apakah Anda yakin ingin logout?')) {
+      localStorage.removeItem('userToken');
+      localStorage.removeItem('userId');
+      window.location.href = 'index.html';
+    }
+  }
+
+  // Check login (optional - uncomment if needed)
+  // function checkLogin() {\n  //   if (!localStorage.getItem('userToken')) {\n  //     window.location.href = 'index.html';\n  //   }\n  // }\n</script>
+
+</body>
+</html>
