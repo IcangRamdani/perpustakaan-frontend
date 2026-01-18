@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Peminjaman</title>
 <link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
 </head>
 <body onload="checkLogin()">
 
@@ -89,7 +90,7 @@
 <script>
 async function loadBukuSelect() {
   try {
-    const response = await fetch('http://localhost:3000/api/buku');
+    const response = await fetch(API_BASE_URL + '/buku');
     if (!response.ok) throw new Error('Gagal load buku');
     
     const buku_list = await response.json();
@@ -138,7 +139,7 @@ async function submitPeminjaman(e) {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/peminjaman', {
+    const response = await fetch(API_BASE_URL + '/peminjaman', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -170,7 +171,7 @@ async function submitPeminjaman(e) {
 async function loadPeminjamanUser() {
   try {
     const userId = parseInt(localStorage.getItem('user_id'));
-    const response = await fetch('http://localhost:3000/api/peminjaman');
+    const response = await fetch(API_BASE_URL + '/peminjaman');
     if (!response.ok) throw new Error('Gagal load peminjaman');
     
     const allLoans = await response.json();
@@ -207,7 +208,7 @@ async function loadPeminjamanUser() {
 async function kembalikanBuku(peminjamanId) {
   if (confirm('Konfirmasi pengembalian buku?')) {
     try {
-      const response = await fetch(`http://localhost:3000/api/peminjaman/${peminjamanId}/return`, {
+      const response = await fetch(API_BASE_URL + `/peminjaman/${peminjamanId}/return`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' }
       });

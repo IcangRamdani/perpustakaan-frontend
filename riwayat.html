@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riwayat Peminjaman - Perpustakaan Digital</title>
     <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
 </head>
 <body onload="checkLogin()">
 
@@ -231,7 +232,7 @@ async function loadRiwayat() {
     const filterStatus = document.getElementById('filterStatus').value;
     const filterDate = document.getElementById('filterDate').value;
 
-    const response = await fetch('http://localhost:3000/api/peminjaman');
+    const response = await fetch(API_BASE_URL + '/peminjaman');
     if (!response.ok) throw new Error('Gagal load riwayat');
     
     let allLoans = await response.json();
@@ -315,7 +316,7 @@ async function returnBook(loanId, bookTitle) {
   }
 
   try {
-    const response = await fetch(`http://localhost:3000/api/peminjaman/${loanId}/return`, {
+    const response = await fetch(API_BASE_URL + `/peminjaman/${loanId}/return`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard - Perpustakaan Digital</title>
 <link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
 </head>
 
 <body onload="checkLogin()">
@@ -126,7 +127,7 @@
       const userId = localStorage.getItem('user_id');
       
       // Load books
-      const bukuResponse = await fetch('http://localhost:3000/api/buku');
+      const bukuResponse = await fetch(API_BASE_URL + '/buku');
       if (!bukuResponse.ok) throw new Error('Gagal load buku');
       const buku_list = await bukuResponse.json();
       
@@ -134,7 +135,7 @@
       let bukuDipinjamCount = 0;
       let recentLoans = [];
       try {
-        const peminjamanResponse = await fetch('http://localhost:3000/api/peminjaman');
+        const peminjamanResponse = await fetch(API_BASE_URL + '/peminjaman');
         if (peminjamanResponse.ok) {
           const allLoans = await peminjamanResponse.json();
           recentLoans = allLoans.filter(p => p.status === 'Dipinjam').slice(0, 5);
@@ -147,7 +148,7 @@
       // Load fines
       let totalDenda = 0;
       try {
-        const dendaResponse = await fetch('http://localhost:3000/api/denda');
+        const dendaResponse = await fetch(API_BASE_URL + '/denda');
         if (dendaResponse.ok) {
           const allFines = await dendaResponse.json();
           totalDenda = allFines

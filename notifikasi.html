@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Notifikasi - Perpustakaan Digital</title>
 <link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
 </head>
 <body onload="checkLogin(); loadNotifikasi()">
 
@@ -82,7 +83,7 @@ async function loadNotifikasi() {
     const userId = parseInt(localStorage.getItem('user_id'));
     
     // Get all loans to generate notifications
-    const peminjamanResponse = await fetch('http://localhost:3000/api/peminjaman');
+    const peminjamanResponse = await fetch(API_BASE_URL + '/peminjaman');
     if (!peminjamanResponse.ok) throw new Error('Gagal load peminjaman');
     
     const allLoans = await peminjamanResponse.json();
@@ -142,7 +143,7 @@ async function loadNotifikasi() {
     });
     
     // Get fines for notifications
-    const dendaResponse = await fetch('http://localhost:3000/api/denda');
+    const dendaResponse = await fetch(API_BASE_URL + '/denda');
     if (dendaResponse.ok) {
       const allFines = await dendaResponse.json();
       const unpaidFines = allFines.filter(d => d.status === 'Belum dibayar');

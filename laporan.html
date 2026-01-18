@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laporan - Perpustakaan Digital</title>
 <link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
 </head>
 <body onload="checkLogin(); loadLaporan()">
 
@@ -160,10 +161,10 @@
 async function loadLaporan() {
   try {
     // Load all data
-    const bukuResponse = await fetch('http://localhost:3000/api/buku');
-    const userResponse = await fetch('http://localhost:3000/api/user');
-    const peminjamanResponse = await fetch('http://localhost:3000/api/peminjaman');
-    const dendaResponse = await fetch('http://localhost:3000/api/denda');
+    const bukuResponse = await fetch(API_BASE_URL + '/buku');
+    const userResponse = await fetch(API_BASE_URL + '/user');
+    const peminjamanResponse = await fetch(API_BASE_URL + '/peminjaman');
+    const dendaResponse = await fetch(API_BASE_URL + '/denda');
 
     if (!bukuResponse.ok || !userResponse.ok || !peminjamanResponse.ok || !dendaResponse.ok) {
       throw new Error('Gagal memuat data');

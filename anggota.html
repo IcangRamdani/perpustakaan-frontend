@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profil Anggota - Perpustakaan Digital</title>
 <link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
 </head>
 <body onload="checkLogin(); loadUserProfile()">
 
@@ -97,7 +98,7 @@ async function loadUserProfile() {
     document.getElementById('userUsername').textContent = username || '-';
 
     // Load detailed user data
-    const response = await fetch(`http://localhost:3000/api/user/${userId}`);
+    const response = await fetch(API_BASE_URL + `/user/${userId}`);
     if (response.ok) {
       const userData = await response.json();
       document.getElementById('userNIM').textContent = userData.nim || '-';

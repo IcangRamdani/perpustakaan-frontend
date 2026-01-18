@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Katalog Buku - Perpustakaan Digital</title>
   <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
 </head>
 <body onload="checkLogin()">
 
@@ -121,7 +122,7 @@
 
     async function loadKatalogAPI() {
       try {
-        const response = await fetch('http://localhost:3000/api/buku');
+        const response = await fetch(API_BASE_URL + '/buku');
         if (!response.ok) throw new Error('Gagal load buku');
         
         allBooks = await response.json();

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Denda - Perpustakaan Digital</title>
 <link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
 <style>
   .payment-modal {
     display: none;
@@ -366,7 +367,7 @@ let currentPaymentData = {
 async function loadDendaUser() {
   try {
     const userId = parseInt(localStorage.getItem('user_id'));
-    const response = await fetch('http://localhost:3000/api/denda');
+    const response = await fetch(API_BASE_URL + '/denda');
     if (!response.ok) throw new Error('Gagal load denda');
     
     const allFines = await response.json();
@@ -492,7 +493,7 @@ async function confirmPayment() {
   }
 
   try {
-    const response = await fetch(`http://localhost:3000/api/denda/${currentPaymentData.dendaId}`, {
+    const response = await fetch(API_BASE_URL + `/denda/${currentPaymentData.dendaId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
